@@ -1,3 +1,6 @@
+:root {
+  --mc-app-prefix-cls: mc-app;
+}
 html,
 body {
   padding: 0;
