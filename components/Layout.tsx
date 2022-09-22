@@ -6,6 +6,7 @@ import type {
   MCBaseWrapComponentProps,
 } from "../types/common";
 import CustomError from "./CustomError";
+import { FallbackProps } from "react-error-boundary";
 
 interface LayoutProps
   extends MCBaseWrapComponentProps,
@@ -19,7 +20,7 @@ const Layout: React.FC<LayoutProps> = ({ children, isError, error }) => {
         {!isError ? (
           <main className={layoutCls}>{children}</main>
         ) : (
-          <CustomError error={error} />
+          <CustomError error={error as FallbackProps["error"]} />
         )}
       </div>
     </>
