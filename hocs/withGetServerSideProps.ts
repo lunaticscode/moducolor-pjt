@@ -1,10 +1,10 @@
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import axios from "axios";
-import { ServerSideErrorType } from "../types/error";
+import { ErrorType } from "../types/error";
 
 const mapPathToPageTitle: { [key: string]: string } = {
   pickcolor: "PickColor",
-  default: "",
+  default: "Home",
 };
 
 const withGetServerSideProps = (getServerSideProps: GetServerSideProps) => {
@@ -24,7 +24,7 @@ const withGetServerSideProps = (getServerSideProps: GetServerSideProps) => {
         }
       );
     } catch (err) {
-      let errObj: ServerSideErrorType = {};
+      let errObj: ErrorType = {};
       if (axios.isAxiosError(err)) {
         const { status: errStatus, statusText: errText } = err.response || {};
         console.log("\n\n(!)getServerSideProps 'Axios' Error ::: \n", {

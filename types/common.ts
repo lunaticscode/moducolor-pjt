@@ -6,4 +6,5 @@ export interface MCBaseWrapComponentProps {
 export interface MCBasePageProps {
   pageTitle?: string;
   isError?: boolean;
+  error?: any;
 }

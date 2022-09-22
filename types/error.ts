@@ -1,3 +1,5 @@
-export interface ServerSideErrorType {
-  [key: string]: string | number | number | undefined;
+export interface ErrorType {
+  name?: string;
+  errStatus?: number;
+  errText?: string;
 }

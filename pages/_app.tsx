@@ -5,11 +5,11 @@ import CustomHead from "../components/CustomHead";
 import { MCBasePageProps } from "../types/common";
 
 function MyApp({ Component, pageProps }: AppProps<Partial<MCBasePageProps>>) {
-  const { pageTitle } = pageProps;
+  const { pageTitle, isError } = pageProps;
   return (
     <>
       <CustomHead pageTitle={pageTitle} />
-      <Layout>
+      <Layout isError={isError}>
         <Component {...pageProps} />
       </Layout>
     </>
