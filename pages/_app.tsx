@@ -5,7 +5,7 @@ import CustomHead from "../components/CustomHead";
 import { MCBasePageProps } from "../types/common";
 import { ErrorBoundary } from "react-error-boundary";
 import CustomError from "../components/CustomError";
-
+import "../styles/index.scss";
 function MyApp({ Component, pageProps }: AppProps<Partial<MCBasePageProps>>) {
   const { pageTitle, isError, error } = pageProps;
   return (

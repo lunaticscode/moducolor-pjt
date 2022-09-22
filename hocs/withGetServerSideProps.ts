@@ -1,8 +1,8 @@
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import { MCErrorType } from "../types/error";
-import { FallbackProps } from "react-error-boundary";
 
+const DEBUG_MODE = true;
 const mapPathToPageTitle: { [key: string]: string } = {
   pickcolor: "PickColor",
   default: "Home",
@@ -25,24 +25,25 @@ const withGetServerSideProps = (getServerSideProps: GetServerSideProps) => {
         }
       );
     } catch (err) {
-      console.log(err);
+      DEBUG_MODE && console.log(err);
       let errObj: MCErrorType = {
         name: "(!)getServerSideProps Error",
         message: "",
       };
       if (axios.isAxiosError(err)) {
         const { status, statusText: message = "message" } = err.response || {};
-        console.log("\n\n(!)getServerSideProps 'Axios' Error ::: \n", {
-          status,
-          message,
-        });
+        DEBUG_MODE &&
+          console.log("\n\n(!)getServerSideProps 'Axios' Error ::: \n", {
+            status,
+            message,
+          });
         errObj = {
           name: "(!)getServerSideProps 'Axios' Error",
           status,
           message,
         };
       } else {
-        console.log("this is not axios error");
+        DEBUG_MODE && console.log("this is not axios error");
         const message =
           typeof err === "object" && err instanceof Error
             ? err.message
@@ -51,7 +52,7 @@ const withGetServerSideProps = (getServerSideProps: GetServerSideProps) => {
           name: "(!)getServerSideProps Error",
           message,
         };
-        console.log(errObj);
+        DEBUG_MODE && console.log(errObj);
       }
       return {
         props: {
